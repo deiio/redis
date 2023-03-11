@@ -1,3 +1,4 @@
+#!/usr/bin/tclsh
 # TODO # test pipelining
 
 set ::passed 0
@@ -406,7 +407,7 @@ proc main {server port} {
         }
         lsort [redis_sinter $fd set1 set2]
     } {995 996 997 998 999}
-    
+
     test {SINTERSTORE with two sets} {
         redis_sinterstore $fd setres set1 set2
         lsort [redis_smembers $fd setres]
@@ -424,7 +425,7 @@ proc main {server port} {
         redis_sinterstore $fd setres set1 set2 set3
         lsort [redis_smembers $fd setres]
     } {995 999}
-    
+
     test {SAVE - make sure there are all the types as values} {
         redis_lpush $fd mysavelist hello
         redis_lpush $fd mysavelist world
@@ -432,7 +433,7 @@ proc main {server port} {
         redis_set $fd mynormalkey {blablablba}
         redis_save $fd
     } {+OK}
-    
+
     test {Create a random list} {
         set tosort {}
         array set seenrand {}
